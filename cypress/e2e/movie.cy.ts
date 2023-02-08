@@ -1,4 +1,4 @@
-import { should } from "chai";
+//import { should } from "chai";
 
 beforeEach(() => {
   cy.visit("/");
@@ -30,11 +30,19 @@ describe('test for function of search', () => {
   });
 
   it('shoud get mockdata without searchword', () => {
-    cy.intercept("GET", "http://omdbapi.com/?apikey=416ed51a&s=*", {fixture:"example"}).as("movieCall");
+    cy.intercept("GET", "http://omdbapi.com/?apikey=416ed51a&s=*", {fixture:"exampleEmptyInput"}).as("movieCall");
     cy.get("input").should("exist"); 
     //cy.get("input").type("").should("have.value", "");
     cy.get("button#search").click();
-    cy.get(".movie").should("exist");
+    cy.get("p").should("exist");
+  });
+
+  it('shoud get mockdata with numbers', () => {
+    cy.intercept("GET", "http://omdbapi.com/?apikey=416ed51a&s=*", {fixture:"exampleLongnumberinput"}).as("movieCall");
+    cy.get("input").should("exist"); 
+    cy.get("input").type("123").should("have.value", "123");
+    cy.get("button#search").click();
+    cy.get("p").should("exist");
   });
 
 });

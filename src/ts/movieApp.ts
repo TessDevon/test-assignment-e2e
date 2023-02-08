@@ -22,13 +22,12 @@ export async function handleSubmit() {
 
   try {
     movies = await getData(searchText);
-
     if (movies.length > 0) {
       createHtml(movies, container);
     } else {
       displayNoResult(container);
     }
-  } catch {
+  } catch (e){
     displayNoResult(container);
   }
 }

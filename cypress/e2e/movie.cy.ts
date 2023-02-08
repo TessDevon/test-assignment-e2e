@@ -37,10 +37,10 @@ describe('test for function of search', () => {
     cy.get("p").should("exist");
   });
 
-  it('shoud get mockdata with numbers', () => {
+  it('shoud get mockdata with random numbers', () => {
     cy.intercept("GET", "http://omdbapi.com/?apikey=416ed51a&s=*", {fixture:"exampleLongnumberinput"}).as("movieCall");
     cy.get("input").should("exist"); 
-    cy.get("input").type("123").should("have.value", "123");
+    cy.get("input").type("148945").should("have.value", "148945");
     cy.get("button#search").click();
     cy.get("p").should("exist");
   });

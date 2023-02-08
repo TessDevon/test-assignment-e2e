@@ -5,6 +5,9 @@ beforeEach(() => {
 });
 
 describe('test for function of search', () => {
+  it('shoud test to open the webpage', () => {
+  });
+
   it('shoud test when the user fill in a form', () => {
     cy.intercept("GET", "http://omdbapi.com/?apikey=416ed51a&s=*", {fixture:"example"}).as("movieCall");
     cy.get("input").should("exist"); 
